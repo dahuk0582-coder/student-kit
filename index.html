@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Toolkit</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="page-header">
+    <h1>Student Toolkit</h1>
+    <p>대학생활에 필요한 작은 도구들을 한곳에 모았습니다.</p>
+  </header>
+
+  <main class="toolkit-grid">
+    <!-- 1. 글자 수 계산기 -->
+    <section class="tool-card" aria-labelledby="title-char-counter">
+      <h2 id="title-char-counter">글자 수 계산기</h2>
+      <p class="tool-desc">과제나 자기소개서의 글자 수를 확인합니다.</p>
+      <div class="input-group">
+        <label for="charTextInput">본문 입력</label>
+        <textarea id="charTextInput" rows="4" placeholder="여기에 텍스트를 입력하세요."></textarea>
+      </div>
+      <div class="option-row">
+        <label class="inline-check">
+          <input type="checkbox" id="includeSpaceCheck" checked>
+          공백 포함
+        </label>
+        <button type="button" id="clearCharBtn">초기화</button>
+      </div>
+      <div class="result-box" id="charCountResult">공백 포함 0자</div>
+    </section>
+
+    <!-- 2. D-day 계산기 -->
+    <section class="tool-card" aria-labelledby="title-dday">
+      <h2 id="title-dday">D-day 계산기</h2>
+      <p class="tool-desc">시험, 과제 제출, 발표일까지 남은 날짜를 계산합니다.</p>
+      <div class="input-group">
+        <label for="ddayTitleInput">일정 이름</label>
+        <input type="text" id="ddayTitleInput" placeholder="예: 중간고사">
+      </div>
+      <div class="input-group">
+        <label for="ddayDateInput">목표 날짜</label>
+        <input type="date" id="ddayDateInput">
+      </div>
+      <button type="button" id="calcDdayBtn">초기화</button>
+      <div class="result-box" id="ddayResult">목표 날짜를 선택해 주세요.</div>
+    </section>
+
+    <!-- 3. 랜덤 순서 정하기 -->
+    <section class="tool-card" aria-labelledby="title-random-order">
+      <h2 id="title-random-order">랜덤 순서 정하기</h2>
+      <p class="tool-desc">발표나 당번 순서를 무작위로 섞습니다.</p>
+      <div class="input-group">
+        <label for="orderNamesInput">이름 목록 (한 줄에 한 명씩 입력)</label>
+        <textarea id="orderNamesInput" rows="4" placeholder="예:&#10;김민수&#10;이지은&#10;박서준"></textarea>
+      </div>
+      <button type="button" id="shuffleOrderBtn">순서 정하기</button>
+      <div class="result-box" id="randomOrderResult">결과가 여기에 표시됩니다.</div>
+    </section>
+
+    <!-- 4. 팀 구성하기 -->
+    <section class="tool-card" aria-labelledby="title-team-builder">
+      <h2 id="title-team-builder">팀 구성하기</h2>
+      <p class="tool-desc">인원 목록을 바탕으로 무작위로 팀을 나눕니다.</p>
+      <div class="input-group">
+        <label for="teamMembersInput">참여 인원 (한 줄에 한 명씩 입력)</label>
+        <textarea id="teamMembersInput" rows="4" placeholder="예:&#10;김민수&#10;이지은&#10;박서준&#10;최유나"></textarea>
+      </div>
+      <fieldset class="radio-group">
+        <legend>나누는 기준</legend>
+        <label class="inline-check">
+          <input type="radio" name="teamSplitMode" id="splitByTeamCount" value="teamCount" checked>
+          팀 수 기준
+        </label>
+        <label class="inline-check">
+          <input type="radio" name="teamSplitMode" id="splitByMemberCount" value="memberCount">
+          팀당 인원 기준
+        </label>
+      </fieldset>
+      <div class="input-group">
+        <label for="teamSizeInput">숫자 입력</label>
+        <input type="number" id="teamSizeInput" min="1" value="2">
+      </div>
+      <button type="button" id="makeTeamBtn">팀 구성하기</button>
+      <div class="result-box" id="teamResult">팀 구성 결과가 여기에 표시됩니다.</div>
+    </section>
+
+    <!-- 5. 발표 시간 계산기 -->
+    <section class="tool-card" aria-labelledby="title-speech-time">
+      <h2 id="title-speech-time">발표 시간 계산기</h2>
+      <p class="tool-desc">공백 제외 글자 수와 말하기 속도로 예상 발표 시간을 계산합니다.</p>
+      <div class="input-group">
+        <label for="speechScriptInput">발표 원고</label>
+        <textarea id="speechScriptInput" rows="4" placeholder="발표 내용을 입력하세요."></textarea>
+      </div>
+      <div class="input-group">
+        <label for="speechSpeedSelect">발표 속도</label>
+        <select id="speechSpeedSelect">
+          <option value="250">느리게 (250자/분)</option>
+          <option value="300" selected>보통 (300자/분)</option>
+          <option value="350">빠르게 (350자/분)</option>
+        </select>
+      </div>
+      <button type="button" id="calcSpeechBtn">예상 시간 계산</button>
+      <div class="result-box" id="speechTimeResult">예상 발표 시간: 0분 0초 (공백 제외 0자)
+※ 예상치이며 실제 발표 시간과 다를 수 있습니다.</div>
+    </section>
+
+    <!-- 6. 스톱워치 -->
+    <section class="tool-card" aria-labelledby="title-stopwatch">
+      <h2 id="title-stopwatch">스톱워치</h2>
+      <p class="tool-desc">공부 세션이나 발표 연습 시간을 측정합니다.</p>
+      <div class="stopwatch-display" id="stopwatchDisplay">00:00</div>
+      <div class="button-row">
+        <button type="button" id="startStopwatchBtn">시작</button>
+        <button type="button" id="stopStopwatchBtn">정지</button>
+        <button type="button" id="resetStopwatchBtn">초기화</button>
+      </div>
+      <div class="result-box" id="stopwatchStatus">대기 중</div>
+    </section>
+
+    <!-- 7. BMI 계산기 -->
+    <section class="tool-card" aria-labelledby="title-bmi">
+      <h2 id="title-bmi">BMI 계산기</h2>
+      <p class="tool-desc">키와 몸무게를 입력해 체질량지수를 확인합니다.</p>
+      <div class="input-row">
+        <div class="input-group">
+          <label for="heightInput">키 (cm)</label>
+          <input type="number" id="heightInput" min="1" step="0.1" placeholder="예: 170">
+        </div>
+        <div class="input-group">
+          <label for="weightInput">체중 (kg)</label>
+          <input type="number" id="weightInput" min="1" step="0.1" placeholder="예: 65">
+        </div>
+      </div>
+      <button type="button" id="calcBmiBtn">BMI 계산</button>
+      <div class="result-box" id="bmiResult">키와 체중을 입력해 주세요.
+※ BMI는 참고용 지표이며 건강 진단이 아닙니다.</div>
+    </section>
+
+    <!-- 8. 준비물 체크리스트 -->
+    <section class="tool-card" aria-labelledby="title-checklist">
+      <h2 id="title-checklist">준비물 체크리스트</h2>
+      <p class="tool-desc">수업, 시험, 동아리 활동 준비물을 정리합니다.</p>
+      <div class="input-row">
+        <div class="input-group">
+          <label for="checklistItemInput">준비물 추가</label>
+          <input type="text" id="checklistItemInput" placeholder="예: 노트북, 충전기">
+        </div>
+        <div class="align-end">
+          <button type="button" id="addChecklistBtn">추가</button>
+        </div>
+      </div>
+      <ul class="checklist-items" id="checklistContainer"></ul>
+      <div class="result-box" id="checklistSummary">전체 0개 / 완료 0개</div>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>
